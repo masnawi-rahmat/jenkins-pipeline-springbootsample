@@ -22,10 +22,12 @@ pipeline {
         
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-                    sh "docker tag spring-boot-demo $DOCKER_USERNAME/spring-boot-demo"
-                    sh "docker push $DOCKER_USERNAME/spring-boot-demo"
+                sh "ls"
+                sh "docker rmi spring-boot-demo"
+                //withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    //sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+                    //sh "docker tag spring-boot-demo $DOCKER_USERNAME/spring-boot-demo"
+                    //sh "docker push $DOCKER_USERNAME/spring-boot-demo"
                 }
             }
         }
